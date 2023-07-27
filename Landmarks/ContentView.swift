@@ -13,10 +13,22 @@ struct ContentView: View {
 //            Image(systemName: "globe")
 //                .imageScale(.large)
 //                .foregroundColor(.accentColor)
-            Text("Turtle Rock")
-                .font(.title)
-            .padding()
+            
+            // Command-click the text view’s initializer to show the structured editing popover, and then choose “Embed in VStack”.
+            
+            VStack (alignment: .leading){
+                Text("Turtle Rock")
+                    .font(.title)
+                HStack {
+                    Text("Joshua Tree National Park")
+                        .font(.subheadline)
+                    Spacer()
+                    Text("California")
+                        .font(.subheadline)
+                }
+            }
         }
+        .padding()
     }
 }
 
