@@ -16,6 +16,7 @@
 		9770B6C62A72ABD700FC1D98 /* LandmarksUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9770B6C52A72ABD700FC1D98 /* LandmarksUITestsLaunchTests.swift */; };
 		9770B6D32A72AEF400FC1D98 /* CircleImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9770B6D22A72AEF400FC1D98 /* CircleImage.swift */; };
 		9770B6D52A72AFCD00FC1D98 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9770B6D42A72AFCD00FC1D98 /* MapView.swift */; };
+		9770B6D72A72B52700FC1D98 /* landmarkData.json in Resources */ = {isa = PBXBuildFile; fileRef = 9770B6D62A72B52700FC1D98 /* landmarkData.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +49,7 @@
 		9770B6C52A72ABD700FC1D98 /* LandmarksUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarksUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		9770B6D22A72AEF400FC1D98 /* CircleImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleImage.swift; sourceTree = "<group>"; };
 		9770B6D42A72AFCD00FC1D98 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
+		9770B6D62A72B52700FC1D98 /* landmarkData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = landmarkData.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 		9770B6A72A72ABD500FC1D98 /* Landmarks */ = {
 			isa = PBXGroup;
 			children = (
+				9770B6D62A72B52700FC1D98 /* landmarkData.json */,
 				9770B6A82A72ABD500FC1D98 /* LandmarksApp.swift */,
 				9770B6AA2A72ABD500FC1D98 /* ContentView.swift */,
 				9770B6D22A72AEF400FC1D98 /* CircleImage.swift */,
@@ -239,6 +242,7 @@
 			files = (
 				9770B6B02A72ABD600FC1D98 /* Preview Assets.xcassets in Resources */,
 				9770B6AD2A72ABD600FC1D98 /* Assets.xcassets in Resources */,
+				9770B6D72A72B52700FC1D98 /* landmarkData.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
