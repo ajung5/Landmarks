@@ -29,10 +29,22 @@ struct LandmarkRow: View {
 
 struct LandmarkRow_Previews: PreviewProvider {
     static var previews: some View {
+        Group{
+            // To fix the preview, you’ll need to modify the preview provider.
+            // In the previews static property of LandmarkRow_Previews, add the landmark parameter to the LandmarkRow initializer, specifying the first element of the landmarks array.
+            // The preview displays the text, “Hello, World!”.
+            LandmarkRow(landmark: landmarks[0])
+            // Use the previewLayout(_:) modifier to set a size that approximates a row in a list.
+               // .previewLayout(.fixed(width: 300, height: 70))
+            
+            LandmarkRow(landmark: landmarks[1])
+            // Use the previewLayout(_:) modifier to set a size that approximates a row in a list.
+                //.previewLayout(.fixed(width: 300, height: 70))
+        }
         
-        // To fix the preview, you’ll need to modify the preview provider.
-        // In the previews static property of LandmarkRow_Previews, add the landmark parameter to the LandmarkRow initializer, specifying the first element of the landmarks array.
-        // The preview displays the text, “Hello, World!”.
-        LandmarkRow(landmark: landmarks[0])
+        //To simplify the code, move the previewLayout(_:) call to the outside of the group’s child declarations.
+        // A view’s children inherit the view’s contextual settings, such as preview configurations.
+        // Use the previewLayout(_:) modifier to set a size that approximates a row in a list.
+            .previewLayout(.fixed(width: 300, height: 70))
     }
 }
