@@ -20,6 +20,7 @@
 		9770B6D92A72B57B00FC1D98 /* Landmark.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9770B6D82A72B57B00FC1D98 /* Landmark.swift */; };
 		9770B6DB2A72B84B00FC1D98 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9770B6DA2A72B84B00FC1D98 /* ModelData.swift */; };
 		9770B6E02A72B95F00FC1D98 /* LandmarkRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9770B6DF2A72B95F00FC1D98 /* LandmarkRow.swift */; };
+		9770B6E22A72BBF800FC1D98 /* LandmarkList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9770B6E12A72BBF800FC1D98 /* LandmarkList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		9770B6D82A72B57B00FC1D98 /* Landmark.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Landmark.swift; sourceTree = "<group>"; };
 		9770B6DA2A72B84B00FC1D98 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
 		9770B6DF2A72B95F00FC1D98 /* LandmarkRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkRow.swift; sourceTree = "<group>"; };
+		9770B6E12A72BBF800FC1D98 /* LandmarkList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LandmarkList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +150,7 @@
 				9770B6D22A72AEF400FC1D98 /* CircleImage.swift */,
 				9770B6D42A72AFCD00FC1D98 /* MapView.swift */,
 				9770B6DF2A72B95F00FC1D98 /* LandmarkRow.swift */,
+				9770B6E12A72BBF800FC1D98 /* LandmarkList.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -303,6 +306,7 @@
 				9770B6AB2A72ABD500FC1D98 /* ContentView.swift in Sources */,
 				9770B6D52A72AFCD00FC1D98 /* MapView.swift in Sources */,
 				9770B6A92A72ABD500FC1D98 /* LandmarksApp.swift in Sources */,
+				9770B6E22A72BBF800FC1D98 /* LandmarkList.swift in Sources */,
 				9770B6D32A72AEF400FC1D98 /* CircleImage.swift in Sources */,
 				9770B6D92A72B57B00FC1D98 /* Landmark.swift in Sources */,
 				9770B6E02A72B95F00FC1D98 /* LandmarkRow.swift in Sources */,
