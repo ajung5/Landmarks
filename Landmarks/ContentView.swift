@@ -7,18 +7,24 @@
 
 import SwiftUI
 
+
 struct ContentView: View {
     var body: some View {
         VStack {
-//            Image(systemName: "globe")
-//                .imageScale(.large)
-//                .foregroundColor(.accentColor)
+            MapView()
+                .frame(height: 300)
+                .ignoresSafeArea(edges: .top)
             
-            // Command-click the text view’s initializer to show the structured editing popover, and then choose “Embed in VStack”.
-            
-            VStack (alignment: .leading){
+            CircleImage()
+                .offset(y: -130)
+                .padding(.bottom, -130)
+
+
+            VStack(alignment: .leading) {
                 Text("Turtle Rock")
                     .font(.title)
+
+
                 HStack {
                     Text("Joshua Tree National Park")
                         .font(.subheadline)
@@ -26,11 +32,24 @@ struct ContentView: View {
                     Text("California")
                         .font(.subheadline)
                 }
+                
+                .font(.subheadline)
+                .foregroundColor(.secondary)
+                
+                Divider()
+                
+                Text("About Turtle Rock")
+                    .font(.title2)
+                
+                Text("Descriptive Text goes here")
             }
+            .padding()
+            
+            Spacer()
         }
-        .padding()
     }
 }
+
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
