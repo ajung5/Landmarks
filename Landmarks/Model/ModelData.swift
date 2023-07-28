@@ -6,6 +6,15 @@
 //
 
 import Foundation
+import Combine
+
+// Declare a new model type that conforms to the ObservableObject protocol from the Combine framework.
+// SwiftUI subscribes to your observable object, and updates any views that need refreshing when the data changes.
+final class ModelData: ObservableObject{
+    // Move the landmarks array into the model.
+    // Add the @Published attribute to the landmarks array.
+    @Published var landmarks: [Landmark] = load("landmarkData.json")
+}
 
 // Create an array of landmarks that you initialize from landmarkData.json.
 var landmarks: [Landmark] = load("landmarkData.json")
