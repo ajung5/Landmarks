@@ -11,12 +11,14 @@ struct LandmarkList: View {
     
     // Add a @State property called showFavoritesOnly with its initial value set to false.
     // Because you use state properties to hold information that’s specific to a view and its subviews, you always create state as private.
-    @State private var showFavoriteOnly = true // Change the initial value of showFavoritesOnly to true to see how the list reacts.
+    @State private var showFavoritesOnly = false
+    // Change the initial value of showFavoritesOnly to true to see how the list reacts.
+    // Before moving on, return the default value of showsFavoritesOnly to false.
     
     // Compute a filtered version of the landmarks list by checking the showFavoritesOnly property and each landmark.isFavorite value.
     var filteredLandmarks: [Landmark] {
         landmarks.filter { landmark in
-            (!showFavoriteOnly || landmark.isFavorite)
+            (!showFavoritesOnly || landmark.isFavorite)
         }
     }
     
@@ -36,17 +38,37 @@ struct LandmarkList: View {
             
             // remove the id parameter.
             // Use the filtered version of the list of landmarks in the List.
-            List(filteredLandmarks) { landmark in
-                // Complete the dynamically-generated list by returning a LandmarkRow from the closure.
-                // This creates one LandmarkRow for each element in the landmarks array.
+            
+//            List(filteredLandmarks) { landmark in
+//                // Complete the dynamically-generated list by returning a LandmarkRow from the closure.
+//                // This creates one LandmarkRow for each element in the landmarks array.
+//
+//                // Inside the list’s closure, wrap the returned row in a NavigationLink, specifying the LandmarkDetail view as the destination.
+//                NavigationLink {
+//                    LandmarkDetail(landmark: landmark)
+//                } label: {
+//                    LandmarkRow(landmark: landmark)
+//                }
+//            }
+            
+            // Create a nested ForEach group to transform the landmarks into rows.
+            // To combine static and dynamic views in a list, or to combine two or more different groups of dynamic views, use the ForEach type instead of passing your collection of data to List.
+            List {
+                // Add a Toggle view as the first child of the List view, passing a binding to showFavoritesOnly.
+                // You use the $ prefix to access a binding to a state variable, or one of its properties.
+                Toggle(isOn: $showFavoritesOnly) {
+                    Text("Favorites only")
+                }
                 
-                // Inside the list’s closure, wrap the returned row in a NavigationLink, specifying the LandmarkDetail view as the destination.
-                NavigationLink {
-                    LandmarkDetail(landmark: landmark)
-                } label: {
-                    LandmarkRow(landmark: landmark)
+                ForEach(filteredLandmarks) { landmark in
+                    NavigationLink {
+                        LandmarkDetail(landmark: landmark)
+                    } label: {
+                        LandmarkRow(landmark: landmark)
+                    }
                 }
             }
+            
             // Call the navigationTitle(_:) modifier method to set the title of the navigation bar when displaying the list.
             .navigationTitle("Landmarks")
         }
