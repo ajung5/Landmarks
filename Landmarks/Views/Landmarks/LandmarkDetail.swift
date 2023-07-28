@@ -8,8 +8,14 @@
 import SwiftUI
 
 struct LandmarkDetail: View {
+    // compute the index of the input landmark by comparing it with the model data.
+    @EnvironmentObject var modelData: ModelData
     // In LandmarkDetail.swift, add a Landmark property to the LandmarkDetail type.
     var landmark: Landmark
+    
+    var landmarkIndex: Int {
+        modelData.landmarks.firstIndex(where: { $0.id == landmark.id })!
+    }
     
     var body: some View {
         // Embed the VStack that holds the three text views in another VStack.
@@ -32,8 +38,11 @@ struct LandmarkDetail: View {
 
 
             VStack(alignment: .leading) {
-                Text(landmark.name)
-                    .font(.title)
+                HStack {
+                    Text(landmark.name)
+                        .font(.title)
+                    FavoriteButton(isSet: $modelData.landmarks[landmarkIndex].isFavorite)
+                }
 
 
                 HStack {
@@ -69,8 +78,11 @@ struct LandmarkDetail: View {
 }
 
 struct LandmarkDetail_Previews: PreviewProvider {
+    static let modelData = ModelData()
+    
     static var previews: some View {
         // Update the LandmarkDetail view to work with the ModelData object in the environment.
         LandmarkDetail(landmark: ModelData() .landmarks[0])
+            .environmentObject(modelData)
     }
 }
