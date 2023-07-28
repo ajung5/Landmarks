@@ -23,6 +23,15 @@ struct LandmarkRow: View {
             Text(landmark.name)
             
             Spacer()
+            
+            // After the spacer, add a star image inside an if statement to test whether the current landmark is a favorite.
+            // In SwiftUI blocks, you use if statements to conditionally include views.
+            if landmark.isFavorite {
+                Image(systemName: "star.fill")
+                    // Because system images are vector based, you can change their color with the foregroundColor(_:) modifier.
+                    // The star is present whenever a landmark’s isFavorite property is true. You’ll see how to modify that property later in this tutorial.
+                    .foregroundColor(.yellow)
+            }
         }
     }
 }
