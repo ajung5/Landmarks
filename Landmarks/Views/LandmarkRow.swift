@@ -37,6 +37,9 @@ struct LandmarkRow: View {
 }
 
 struct LandmarkRow_Previews: PreviewProvider {
+    // Update the LandmarkRow preview to work with the ModelData object.
+    static var landmarks = ModelData().landmarks
+    
     static var previews: some View {
         Group{
             // To fix the preview, you’ll need to modify the preview provider.

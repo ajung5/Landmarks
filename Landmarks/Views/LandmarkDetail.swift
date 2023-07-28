@@ -70,6 +70,7 @@ struct LandmarkDetail: View {
 
 struct LandmarkDetail_Previews: PreviewProvider {
     static var previews: some View {
-        LandmarkDetail(landmark: landmarks[0])
+        // Update the LandmarkDetail view to work with the ModelData object in the environment.
+        LandmarkDetail(landmark: ModelData() .landmarks[0])
     }
 }

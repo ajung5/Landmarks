@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct LandmarkList: View {
+    // In LandmarkList.swift, add an @EnvironmentObject property declaration to the view, and an environmentObject(_:) modifier to the preview.
+    // The modelData property gets its value automatically, as long as the environmentObject(_:) modifier has been applied to a parent.
+    @EnvironmentObject var modelData: ModelData
     
     // Add a @State property called showFavoritesOnly with its initial value set to false.
     // Because you use state properties to hold information that’s specific to a view and its subviews, you always create state as private.
@@ -17,7 +20,8 @@ struct LandmarkList: View {
     
     // Compute a filtered version of the landmarks list by checking the showFavoritesOnly property and each landmark.isFavorite value.
     var filteredLandmarks: [Landmark] {
-        landmarks.filter { landmark in
+        // Use modelData.landmarks as the data when filtering landmarks.
+        modelData.landmarks.filter { landmark in
             (!showFavoritesOnly || landmark.isFavorite)
         }
     }
@@ -89,5 +93,6 @@ struct LandmarkList_Previews: PreviewProvider {
         
         // Select LandmarkList.swift in the Project navigator and revert the preview to show only a single version of the list.
         LandmarkList()
+            .environmentObject(ModelData())
     }
 }
