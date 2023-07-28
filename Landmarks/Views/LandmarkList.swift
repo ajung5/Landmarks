@@ -8,6 +8,18 @@
 import SwiftUI
 
 struct LandmarkList: View {
+    
+    // Add a @State property called showFavoritesOnly with its initial value set to false.
+    // Because you use state properties to hold information that’s specific to a view and its subviews, you always create state as private.
+    @State private var showFavoriteOnly = true // Change the initial value of showFavoritesOnly to true to see how the list reacts.
+    
+    // Compute a filtered version of the landmarks list by checking the showFavoritesOnly property and each landmark.isFavorite value.
+    var filteredLandmarks: [Landmark] {
+        landmarks.filter { landmark in
+            (!showFavoriteOnly || landmark.isFavorite)
+        }
+    }
+    
     var body: some View {
         //Embed the dynamically generated list of landmarks in a NavigationView.
         NavigationView {
@@ -23,7 +35,8 @@ struct LandmarkList: View {
             // Lists work with identifiable data. You can make your data identifiable in one of two ways: by passing along with your data a key path to a property that uniquely identifies each element, or by making your data type conform to the Identifiable protocol.
             
             // remove the id parameter.
-            List(landmarks) { landmark in
+            // Use the filtered version of the list of landmarks in the List.
+            List(filteredLandmarks) { landmark in
                 // Complete the dynamically-generated list by returning a LandmarkRow from the closure.
                 // This creates one LandmarkRow for each element in the landmarks array.
                 
@@ -44,11 +57,15 @@ struct LandmarkList_Previews: PreviewProvider {
     static var previews: some View {
         // Within the list preview, embed the LandmarkList in a ForEach instance, using an array of device names as the data.
         // ForEach operates on collections the same way as the list, which means you can use it anywhere you can use a child view, such as in stacks, lists, groups, and more. When the elements of your data are simple value types — like the strings you’re using here — you can use \.self as key path to the identifier.
-        ForEach(["iPhone SE (2nd generation)", "iPhone XS Max"], id: \.self) { deviceName in
-            LandmarkList()
-                .previewDevice(PreviewDevice(rawValue: deviceName))
-                // Use the previewDisplayName(_:) modifier to add the device names as labels for the previews.
-                .previewDisplayName(deviceName)
-        }
+        
+//        ForEach(["iPhone SE (2nd generation)", "iPhone XS Max"], id: \.self) { deviceName in
+//            LandmarkList()
+//                .previewDevice(PreviewDevice(rawValue: deviceName))
+//                // Use the previewDisplayName(_:) modifier to add the device names as labels for the previews.
+//                .previewDisplayName(deviceName)
+//        }
+        
+        // Select LandmarkList.swift in the Project navigator and revert the preview to show only a single version of the list.
+        LandmarkList()
     }
 }
