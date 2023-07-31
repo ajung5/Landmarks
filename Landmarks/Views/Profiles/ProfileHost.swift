@@ -37,7 +37,9 @@ struct ProfileHost: View {
             if editMode?.wrappedValue == .inactive {
                 ProfileSummary(profile: modelData.profile)
             } else {
-                Text("Profile Editor")
+                // Update the conditional content in ProfileHost to include the profile editor and pass along the profile binding.
+                // Now the edit profile view displays when you tap Edit.
+                ProfileEditor(profile: $draftProfile)
             }
         }
         .padding()
