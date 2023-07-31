@@ -15,6 +15,9 @@ import UIKit
 
 struct PageViewController<Page: View>: UIViewControllerRepresentable {
     var pages: [Page]
+    //Start by adding a currentPage binding as a property of PageViewController.
+    // In addition to declaring the @Binding property, you also update the call to setViewControllers(_:direction:animated:), passing the value of the currentPage binding.
+    @Binding var currentPage: Int
     
     // Add another method to PageViewController to make the coordinator.
     // SwiftUI calls this makeCoordinator() method before makeUIViewController(context:), so that you have access to the coordinator object when configuring your view controller.
@@ -32,6 +35,10 @@ struct PageViewController<Page: View>: UIViewControllerRepresentable {
             navigationOrientation: .horizontal)
         // Add the coordinator as the data source of the UIPageViewController.
         pageViewController.dataSource = context.coordinator
+        
+        // Assign the coordinator as the delegate for the UIPageViewController, in addition to the data source.
+        // With the binding connected in both directions, the text view updates to show the correct page number after each swipe.
+        pageViewController.delegate = context.coordinator
 
         return pageViewController
     }
@@ -46,7 +53,7 @@ struct PageViewController<Page: View>: UIViewControllerRepresentable {
             
             // Initialize an array of controllers in the coordinator using the pages array of views.
             // The coordinator is a good place to store these controllers, because the system initializes them only once, and before you need them to update the view controller.
-            [context.coordinator.controllers[0]], direction: .forward, animated: true)
+            [context.coordinator.controllers[currentPage]], direction: .forward, animated: true)
     }
     
     // Declare a nested Coordinator class inside PageViewController.
@@ -54,7 +61,10 @@ struct PageViewController<Page: View>: UIViewControllerRepresentable {
     
     // Add UIPageViewControllerDataSource conformance to the Coordinator type, and implement the two required methods.
     // These two methods establish the relationships between view controllers, so that you can swipe back and forth between them.
-    class Coordinator: NSObject, UIPageViewControllerDataSource {
+    
+    // In PageViewController.swift, conform the coordinator to UIPageViewControllerDelegate, and add the pageViewController(_:didFinishAnimating:previousViewControllers:transitionCompleted completed: Bool) method.
+    // Because SwiftUI calls this method whenever a page switching animation completes, you can find the index of the current view controller and update the binding.
+    class Coordinator: NSObject, UIPageViewControllerDataSource, UIPageViewControllerDelegate {
         var parent: PageViewController
         var controllers = [UIViewController]()
         
@@ -87,5 +97,17 @@ struct PageViewController<Page: View>: UIViewControllerRepresentable {
             }
             return controllers[index + 1]
         }
+        
+        func pageViewController(
+            _ pageViewController: UIPageViewController,
+            didFinishAnimating finished: Bool,
+            previousViewControllers: [UIViewController],
+            transitionCompleted completed: Bool) {
+                if completed,
+                   let visibleViewController = pageViewController.viewControllers?.first,
+                   let index = controllers.firstIndex(of: visibleViewController) {
+                    parent.currentPage = index
+                }
+            }
     }
 }

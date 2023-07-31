@@ -11,8 +11,16 @@ import SwiftUI
 struct PageView<Page: View>: View {
     var pages: [Page]
     
+    // Declare the @State variable in PageView, and pass a binding to the property when creating the child PageViewController.
+    // important
+    // Remember to use the $ syntax to create a binding to a value that is stored as state.
+    @State private var currentPage = 0
+    
     var body: some View {
-        PageViewController(pages: pages)
+        VStack {
+            PageViewController(pages: pages, currentPage: $currentPage)
+            Text("Current Page: \(currentPage)")
+        }
     }
 }
 
