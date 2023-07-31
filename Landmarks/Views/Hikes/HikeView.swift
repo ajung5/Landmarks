@@ -26,7 +26,17 @@ struct HikeView: View {
                 Spacer()
 
                 Button {
-                    showDetail.toggle()
+                    // Wrap the call to showDetail.toggle() with a call to the withAnimation function.
+                    // Both of the views affected by the showDetail property — the disclosure button and the HikeDetail view — now have animated transitions.
+                    /* withAnimation (.easeInOut(duration: 4)){ // Pass a four-second long basic animation to the withAnimation function.
+                        showDetail.toggle()
+                    } */
+                    
+                    // Before continuing to the next section, restore the withAnimation function to use the default animation by removing the call’s input parameter.
+                    withAnimation {
+                        showDetail.toggle()
+                    }
+                    
                 } label: {
                     Label("Graph", systemImage: "chevron.right.circle")
                         .labelStyle(.iconOnly)
