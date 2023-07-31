@@ -24,6 +24,15 @@ struct Landmark: Hashable, Codable, Identifiable {
     // The landmarkData.json file has a key with this name for each landmark. Because Landmark conforms to Codable, you can read the value associated with the key by creating a new property with the same name as the key.
     var isFavorite: Bool
     
+    // add a Category enumeration and a category property to the Landmark structure.
+    // The landmarkData.json file already includes a category value for each landmark with one of three string values. By matching the names in the data file, you can rely on the structure’s Codable conformance to load the data.
+    var category: Category
+    enum Category: String, CaseIterable, Codable {
+        case lakes = "Lakes"
+        case rivers = "Rivers"
+        case mountains = "Mountains"
+    }
+    
     // Add an imageName property to read the name of the image from the data, and a computed image property that loads an image from the asset catalog.
     // You make the property private because users of the Landmarks structure care only about the image itself.
     private var  imageName: String

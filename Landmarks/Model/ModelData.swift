@@ -18,6 +18,14 @@ final class ModelData: ObservableObject{
     // Load the hikes array into your model object.
     // Because you’ll never modify hike data after initially loading it, you don’t need to mark it with the @Published attribute.
     var hikes: [Hike] = load("hikeData.json")
+    
+    // add a computed categories dictionary, with category names as keys, and an array of associated landmarks for each key.
+    var categories: [String: [Landmark]] {
+        Dictionary(
+            grouping: landmarks,
+            by: { $0.category.rawValue}
+        )
+    }
 }
 
 // Create an array of landmarks that you initialize from landmarkData.json.
