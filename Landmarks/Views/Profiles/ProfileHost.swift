@@ -27,6 +27,15 @@ struct ProfileHost: View {
             // Create an Edit button that toggles the environment’s editMode value on and off.
             //The EditButton controls the same editMode environment value that you accessed in the previous step.
             HStack {
+                // Add a cancel button to ProfileHost.
+                // Unlike the Done button that EditButton provides, the Cancel button doesn’t apply the edits to the real profile data in its closure.
+                if editMode?.wrappedValue == .active {
+                    Button("Cancel", role: .cancel) {
+                        draftProfile = modelData.profile
+                        editMode?.animation().wrappedValue = .inactive
+                    }
+                }
+
                 Spacer()
                 EditButton()
             }
@@ -40,6 +49,15 @@ struct ProfileHost: View {
                 // Update the conditional content in ProfileHost to include the profile editor and pass along the profile binding.
                 // Now the edit profile view displays when you tap Edit.
                 ProfileEditor(profile: $draftProfile)
+                
+                    // Apply the onAppear(perform:) and onDisappear(perform:) modifiers to populate the editor with the correct profile data and update the persistent profile when the user taps the Done button.
+                    // Otherwise, the old values appear the next time edit mode activates.
+                    .onAppear() {
+                        draftProfile = modelData.profile
+                    }
+                    .onDisappear {
+                        modelData.profile = draftProfile
+                    }
             }
         }
         .padding()
