@@ -39,7 +39,7 @@ struct ContentView: View {
         
         
         // Change ContentView to instead display LandmarkList.
-        LandmarkList()
+        //LandmarkList()
     }
 }
 
