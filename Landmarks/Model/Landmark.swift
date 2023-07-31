@@ -24,6 +24,10 @@ struct Landmark: Hashable, Codable, Identifiable {
     // The landmarkData.json file has a key with this name for each landmark. Because Landmark conforms to Codable, you can read the value associated with the key by creating a new property with the same name as the key.
     var isFavorite: Bool
     
+    // add a new isFeatured property.
+    // Like for other landmark properties you’ve added, this Boolean already exists in the data — you just need to declare a new property.
+    var isFeatured: Bool
+    
     // add a Category enumeration and a category property to the Landmark structure.
     // The landmarkData.json file already includes a category value for each landmark with one of three string values. By matching the names in the data file, you can rely on the structure’s Codable conformance to load the data.
     var category: Category

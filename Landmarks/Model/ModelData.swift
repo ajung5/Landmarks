@@ -19,6 +19,11 @@ final class ModelData: ObservableObject{
     // Because you’ll never modify hike data after initially loading it, you don’t need to mark it with the @Published attribute.
     var hikes: [Hike] = load("hikeData.json")
     
+    // add a new computed features array, which contains only the landmarks that have isFeatured set to true.
+    var features: [Landmark] {
+        landmarks.filter { $0.isFeatured}
+    }
+    
     // add a computed categories dictionary, with category names as keys, and an array of associated landmarks for each key.
     var categories: [String: [Landmark]] {
         Dictionary(

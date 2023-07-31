@@ -21,9 +21,25 @@ struct CategoryHome: View {
             // Display the categories in Landmarks using a List.
             // The Landmark.Category case name identifies each item in the list, which must be unique among other categories because it’s an enumeration.
             List {
+                // add the image of the first featured landmark to the top of the list.
+                // You’ll turn this view into an interactive carousel in a later tutorial. For now, it displays one of the featured landmarks with a scaled and cropped preview image.
+                modelData.features[0].image
+                    .resizable()
+                    .scaledToFill()
+                    .frame(height: 200)
+                    .clipped()
+                
+                    // Set the edge insets to zero on both kinds of landmark previews so the content can extend to the edges of the display.
+                    .listRowInsets(EdgeInsets())
+                
+                
                 ForEach(modelData.categories.keys.sorted(), id: \..self) { key in
-                    Text(key)
+                    // Text(key)
+                    
+                    // Update the body of CategoryHome to pass category information to instances of the row type.
+                    CategoryRow(categoryName: key, items: modelData.categories[key]!)
                 }
+                .listRowInsets(EdgeInsets())
             }
             
             
