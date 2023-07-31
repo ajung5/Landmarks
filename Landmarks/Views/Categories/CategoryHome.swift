@@ -13,6 +13,8 @@ struct CategoryHome: View {
     // You’ll need access to the categories right now, as well as to other landmark data later.
     @EnvironmentObject var modelData: ModelData
     
+    @State private var showingProfile = false
+    
     
     var body: some View {
         // Add a NavigationView to host the different categories.
@@ -42,10 +44,26 @@ struct CategoryHome: View {
                 .listRowInsets(EdgeInsets())
             }
             
+                // Add the listStyle modifier to pick a list style that better suits the content.
+                .listStyle(.inset)
             
                 // Set the title of the navigation bar to Featured.
                 // The view showcases one or more featured landmarks at the top.
                 .navigationTitle("Featured")
+            
+                // add a user profile button to the navigation bar using the toolbar modifier, and present the ProfileHost view when the user taps it.
+                .toolbar {
+                    Button  {
+                        showingProfile.toggle()
+                    } label: {
+                        Label("User Profile", systemImage: "person.crop.circle")
+                    }
+                }
+            
+                .sheet(isPresented: $showingProfile) {
+                    ProfileHost()
+                        .environmentObject(modelData)
+                }
         }
     }
 }
