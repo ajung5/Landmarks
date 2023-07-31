@@ -32,7 +32,21 @@ struct HikeView: View {
                         .labelStyle(.iconOnly)
                         .imageScale(.large)
                         .rotationEffect(.degrees(showDetail ? 90 : 0))
+                        //  Try turning off animation for the rotation by adding another animation modifier just above the scaleEffect modifier.
+                        // Take SwiftUI for a spin. Try combining different animation effects to see what’s possible.
+                        // .animation(nil, value: showDetail)
+                    
+                        // Add another animatable change by making the button larger when the graph is visible.
+                        // The animation modifier applies to all animatable changes within the views it wraps.
+                        .scaleEffect(showDetail ? 1.5 : 1)
                         .padding()
+                    
+                        // turn on animation for the button’s rotation by adding an animation modifier that begins on changes of the showDetail value.
+                        // .animation(.easeInOut, value: showDetail)
+                    
+                        // Change the animation type from easeInOut to spring().
+                        // SwiftUI includes basic animations with predefined or custom easing, as well as spring and fluid animations. You can adjust an animation’s speed, set a delay before an animation starts, or specify that an animation repeats.
+                        // .animation(.spring(), value: showDetail)
                 }
             }
 
