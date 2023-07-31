@@ -14,6 +14,10 @@ final class ModelData: ObservableObject{
     // Move the landmarks array into the model.
     // Add the @Published attribute to the landmarks array.
     @Published var landmarks: [Landmark] = load("landmarkData.json")
+    
+    // Load the hikes array into your model object.
+    // Because you’ll never modify hike data after initially loading it, you don’t need to mark it with the @Published attribute.
+    var hikes: [Hike] = load("hikeData.json")
 }
 
 // Create an array of landmarks that you initialize from landmarkData.json.
