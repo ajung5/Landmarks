@@ -25,11 +25,15 @@ struct CategoryHome: View {
             List {
                 // add the image of the first featured landmark to the top of the list.
                 // You’ll turn this view into an interactive carousel in a later tutorial. For now, it displays one of the featured landmarks with a scaled and cropped preview image.
-                modelData.features[0].image
-                    .resizable()
-                    .scaledToFill()
-                    .frame(height: 200)
-                    .clipped()
+//                modelData.features[0].image
+//                    .resizable()
+//                    .scaledToFill()
+//                    .frame(height: 200)
+//                    .clipped()
+                
+                    // replace the placeholder feature image with the new page view.
+                PageView(pages: modelData.features.map { FeatureCard(landmark: $0)})
+                    .aspectRatio(3/2, contentMode: .fit)
                 
                     // Set the edge insets to zero on both kinds of landmark previews so the content can extend to the edges of the display.
                     .listRowInsets(EdgeInsets())

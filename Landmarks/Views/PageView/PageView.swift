@@ -17,9 +17,13 @@ struct PageView<Page: View>: View {
     @State private var currentPage = 0
     
     var body: some View {
-        VStack {
+        // Replace the text box with the page control, switching from a VStack to a ZStack for layout.
+        // Because you’re passing the page count and the binding to the current page, the page control is already showing the correct values.
+        ZStack (alignment: .bottomTrailing){
             PageViewController(pages: pages, currentPage: $currentPage)
-            Text("Current Page: \(currentPage)")
+            PageControl(numberOfPages: pages.count, currentPage: $currentPage)
+                .frame(width: CGFloat(pages.count * 18))
+                .padding(.trailing)
         }
     }
 }
