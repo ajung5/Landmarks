@@ -29,7 +29,15 @@ struct CategoryRow: View {
                     ForEach(items) { landmark in
                         // Text(landmark.name)
                         // replace the Text that holds the landmark name with the new CategoryItem view.
-                        CategoryItem(landmark: landmark)
+                        // CategoryItem(landmark: landmark)
+                        
+                        // wrap the existing CategoryItem with a NavigationLink.
+                        // The category item itself is the label for the button, and its destination is the landmark detail view for the landmark represented by the card.
+                        NavigationLink {
+                            LandmarkDetail(landmark: landmark)
+                        } label: {
+                            CategoryItem(landmark: landmark)
+                        }
                     }
                 }
             }
